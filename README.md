@@ -18,9 +18,9 @@ To help you understand how “Go Up Key” works, we’ve included screenshots f
 
 You can install the extension from your browser’s extension store:
 
-- [Chrome / Brave](https://chrome.google.com/webstore/detail/go-up/obdfapiepknjcdapjicmcldjbnfjngej)
-- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/go-up/)
-- [Edge](https://microsoftedge.microsoft.com/addons/detail/go-up/kfgedjcojfbflkgfnpnpibjfnenahfeo)
+- [Chrome / Brave](https://chromewebstore.google.com/)
+- [Firefox](https://addons.mozilla.org/en-US/firefox/)
+- [Edge](https://microsoftedge.microsoft.com/addons/Microsoft-Edge-Extensions-Home)
 
 ## Keyboard Shortcuts
 

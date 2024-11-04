@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "Go Up Key",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "This browser extension jumps to the parent directory of the current URL by the keyboard shortcut.",
+    "description": "Extension description"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "Go Up Key",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "キーボードショートカットで現在のURLの上のディレクトリへ移動するブラウザ拡張機能です。",
+    "description": "Extension description"
+  }
+}

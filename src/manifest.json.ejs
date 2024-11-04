@@ -1,0 +1,75 @@
+{
+<% if (browser === 'firefox') { -%>
+  "manifest_version": 2,
+<% } else { -%>
+  "manifest_version": 3,
+<% } -%>
+
+  "name": "__MSG_extensionName__",
+  "version": "<%= version %>",
+
+<% if (browser !== 'firefox') { -%>
+  "action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "24": "images/icon24.png",
+      "32": "images/icon32.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    },
+    "default_title": "__MSG_extensionName__"
+  },
+<% } -%>
+
+  "default_locale": "en",
+  "description": "__MSG_extensionDescription__",
+  "icons": {
+    "16": "images/icon16.png",
+    "24": "images/icon24.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+
+<% if (browser === 'firefox') { -%>
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{6ff4be10-00a4-4931-842b-9e6a4250ef54}"
+    }
+  },
+<% } -%>
+
+<% if (browser === 'firefox') { -%>
+  "background": {
+    "scripts": [
+      "background/background.js"
+    ]
+  },
+<% } else { -%>
+  "background": {
+    "service_worker": "background/background.js"
+  },
+<% } -%>
+
+<% if (browser !== 'firefox') { -%>
+  "permissions": [
+    "tabs"
+  ],
+  "host_permissions": [
+  ],
+<% } else { -%>
+  "permissions": [
+    "tabs"
+  ],
+<% } -%>
+
+  "commands": {
+    "go-up-key": {
+      "suggested_key": {
+        "default": "Alt+Up",
+        "mac": "Command+Up"
+      },
+      "description": "Go up one level"
+    }
+  }
+}

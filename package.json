@@ -1,0 +1,30 @@
+{
+  "name": "go-up-key",
+  "version": "1.2.0",
+  "description": "Browser extension that jumps to the parent directory of the current URL by the keyboard shortcut",
+  "main": "index.js",
+  "repository": "git@github.com:tomarint/go-up-key.git",
+  "author": "tomarin <tomarint@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "clean": "rm -rf ./dist/ && mkdir ./dist"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.280",
+    "@webpack-cli/generators": "^3.0.1",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-minimizer-webpack-plugin": "^7.0.0",
+    "ejs": "^3.1.10",
+    "html-minimizer-webpack-plugin": "^5.0.0",
+    "json-minimizer-webpack-plugin": "^5.0.0",
+    "terser-webpack-plugin": "^5.3.10",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.3",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.0.1"
+  }
+}

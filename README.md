@@ -6,6 +6,8 @@ This extension provides a streamlined and efficient way to move up in a website'
 
 ![Screenshot](./screenshots/windows-options.png)
 
+![Screenshot](./screenshots/mac-options.png)
+
 ## How to Install
 
 You can install the extension from your browser’s extension store:

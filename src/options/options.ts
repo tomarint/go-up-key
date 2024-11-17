@@ -102,6 +102,7 @@ async function localizePage(): Promise<void> {
           messageKey = element.messageKeyMac;
         }
         el.textContent = chrome.i18n.getMessage(messageKey);
+        el.classList.remove('invisible-text');
         log.debug(`Localized element ${element.id} with messageKey ${messageKey}`);
       }
     });

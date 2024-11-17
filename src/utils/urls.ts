@@ -1,38 +1,57 @@
-export async function createUrlList(url: string): Promise<string[]> {
-  const urlList = [url];
-  // Check if url contains # or ? and remove them
-  if (url.indexOf("#") > 0) {
-    url = url.substring(0, url.indexOf("#"));
-    urlList.push(url);
-  }
-  if (url.indexOf("?") > 0) {
-    url = url.substring(0, url.indexOf("?"));
-    urlList.push(url);
-  }
-  // Remove last slash of url
-  if (url.endsWith("/") && !url.endsWith("//")) {
-    url = url.substring(0, url.length - 1);
-  }
-  // Remove last directory of url
-  let idx = 0;
-  while ((idx = url.lastIndexOf("/")) > 0) {
-    if (idx > 0 && url.substring(idx - 1, idx) === "/") {
-      break;
+import log from './logger';
+
+export function generateParentUrls(url: string): string[] {
+  try {
+    const urlObj = new URL(url);
+    let pathname = urlObj.pathname;
+    const urlList = [urlObj.toString()];
+
+    log.debug("Generating parent URLs for:", url);
+    log.debug("URL object:", urlObj);
+
+    // Remove hash
+    if (urlObj.hash !== '') {
+      urlObj.hash = '';
+      urlList.push(urlObj.toString());
+      log.debug("URL object:", urlObj);
     }
-    url = url.substring(0, idx);
-    urlList.push(url);
+
+
+    // Remove search
+    if (urlObj.search !== '') {
+      urlObj.search = '';
+      urlList.push(urlObj.toString());
+      log.debug("URL object:", urlObj);
+    }
+
+    // Remove trailing slash
+    if (pathname.endsWith("/") && !pathname.endsWith("//")) {
+      pathname = pathname.slice(0, -1);
+      urlObj.pathname = pathname;
+      log.debug("URL object:", urlObj);
+    }
+
+    // Remove last directory
+    while (pathname.lastIndexOf("/") >= 0) {
+      pathname = pathname.substring(0, pathname.lastIndexOf("/"));
+      urlObj.pathname = pathname;
+      urlList.push(urlObj.toString());
+      log.debug("URL object:", urlObj);
+    }
+
+    log.debug("Parent URLs:", urlList);
+
+    return urlList;
+  } catch (error) {
+    log.error("Invalid URL provided:", url, error);
+    return [url];
   }
-  return urlList;
 }
 
-export async function parentUrl(url: string, levels: number): Promise<string> {
-  const urlList = await createUrlList(url);
-  const len = urlList.length;
-  if (len == 0) {
+export function getParentUrl(url: string, levels: number): string {
+  const urlList = generateParentUrls(url);
+  if (urlList.length === 0) {
     return url;
   }
-  if (levels >= len) {
-    return urlList[len - 1];
-  }
-  return urlList[levels];
+  return urlList[Math.min(levels, urlList.length - 1)];
 }

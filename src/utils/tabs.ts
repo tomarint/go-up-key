@@ -1,13 +1,16 @@
-export function getCurrentTab(): Promise<chrome.tabs.Tab | null> {
+import log from './logger';
+
+export function getActiveTab(): Promise<chrome.tabs.Tab | null> {
   return new Promise((resolve, reject) => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      if (chrome.runtime.lastError) {
-        // console.log("Error retrieving current tab:", chrome.runtime.lastError);
-        reject(chrome.runtime.lastError);
+      const error = chrome.runtime.lastError;
+      if (error) {
+        log.error("Error retrieving current tab:", error);
+        reject(error);
         return;
       }
       if (tabs.length === 0) {
-        // console.log("No active tabs found");
+        log.info("No active tabs found");
         resolve(null);
         return;
       }
@@ -21,10 +24,11 @@ export function updateTab(tabId: number, updateProperties: chrome.tabs.UpdatePro
     chrome.tabs.update(tabId, updateProperties, (tab) => {
       const error = chrome.runtime.lastError;
       if (error) {
-        // console.log("Error updating tab:", error);
+        // The error here is expected when the URL is illegal such as 'about:config'.
+        log.info("Error updating tab:", error);
         reject(error);
       } else if (!tab) {
-        // console.log("Failed to update tab: tab is undefined");
+        log.info("Failed to update tab: tab is undefined");
         reject(new Error('Failed to update tab: tab is undefined'));
       } else {
         resolve(tab);

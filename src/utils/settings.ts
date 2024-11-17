@@ -1,3 +1,5 @@
+import log from './logger';
+
 // Define the structure of the options
 export interface Options {
   OptionCtrlUp: string;
@@ -16,9 +18,23 @@ export function setOption(key: keyof Options, value: string): void {
   };
   chrome.storage.sync.set(data, () => {
     if (chrome.runtime.lastError) {
-      console.error(`Error saving ${key}:`, chrome.runtime.lastError.message);
+      log.error(`Error saving ${key}:`, chrome.runtime.lastError.message);
     } else {
-      console.info(`Saved ${key}:`, value);
+      log.info(`Saved ${key}:`, value);
+    }
+  });
+}
+
+/**
+ * Saves multiple options to chrome.storage.sync.
+ * @param optionsData - An object containing key-value pairs of options.
+ */
+export function setOptions(optionsData: Partial<Options>): void {
+  chrome.storage.sync.set(optionsData, () => {
+    if (chrome.runtime.lastError) {
+      log.error("Error saving options:", chrome.runtime.lastError.message);
+    } else {
+      log.info("Options saved:", optionsData);
     }
   });
 }
@@ -38,12 +54,17 @@ export function getOption(key: keyof Options): Promise<string> {
   return new Promise((resolve, reject) => {
     chrome.storage.sync.get([key], (items) => {
       if (chrome.runtime.lastError) {
-        console.error(`Error retrieving ${key}:`, chrome.runtime.lastError.message);
+        log.error(`Error retrieving ${key}:`, chrome.runtime.lastError.message);
         reject(chrome.runtime.lastError);
       } else {
         const value = items[key] || defaultOptions[key];
-        console.info(`Retrieved ${key}:`, value);
-        resolve(value as string);
+        log.info(`Retrieved ${key}:`, value);
+        if (typeof value !== 'string') {
+          log.warn(`Expected string for ${key}, but got ${typeof value}. Using default.`);
+          resolve(defaultOptions[key] as string);
+        } else {
+          resolve(value);
+        }
       }
     });
   });
@@ -63,10 +84,10 @@ export function getOptions(): Promise<Options> {
   return new Promise((resolve, reject) => {
     chrome.storage.sync.get(defaultOptions, (items) => {
       if (chrome.runtime.lastError) {
-        console.error("Error retrieving options:", chrome.runtime.lastError.message);
+        log.error("Error retrieving options:", chrome.runtime.lastError.message);
         reject(chrome.runtime.lastError);
       } else {
-        console.info("Retrieved options:", items);
+        log.info("Retrieved options:", items);
         resolve(items as Options);
       }
     });

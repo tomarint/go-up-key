@@ -2,18 +2,23 @@ import log from 'loglevel';
 import prefix from 'loglevel-plugin-prefix';
 
 // Register and apply the prefix plugin
-prefix.reg(log);
-prefix.apply(log, {
-  template: "%t %l %n", // Timestamp, Level, Message
-  timestampFormatter: (date) => date.toLocaleTimeString(),
-});
+try {
+  prefix.reg(log);
+  prefix.apply(log, {
+    template: "%t %l %n",
+    timestampFormatter: (date) => date.toLocaleTimeString(),
+  });
+} catch (error) {
+  console.error("Failed to apply loglevel-plugin-prefix:", error);
+}
+
 
 const isDevelopment: boolean = process.env.NODE_ENV !== 'production';
 
 if (isDevelopment) {
-  log.setLevel('debug');
+  log.setLevel('trace');
 } else {
-  log.setLevel('warn');
+  log.setLevel('silent');
 }
 
 export default log;

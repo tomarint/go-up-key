@@ -8,6 +8,8 @@ const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack"); // Import DefinePlugin
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin"); // Type checking plugin
 
+const packageJson = require('./package.json'); // Import package.json to get the version
+
 const browsers = ['chrome', 'firefox', 'edge']; // List of supported browsers
 
 /**
@@ -23,12 +25,12 @@ const createBrowserConfig = (browser, mode) => {
     mode: isProduction ? "production" : "development",
     entry: {
       background: path.resolve(__dirname, "src/background/background.ts"),
-      // Add other entry points as needed
       options: path.resolve(__dirname, "src/options/options.ts"),
     },
     output: {
       path: path.resolve(__dirname, 'dist', browser),
       filename: "[name]/[name].js",
+      clean: true, // Clean the output directory before building
     },
     devtool: isProduction ? false : "source-map", // Enable source maps only in development
     plugins: [
@@ -48,11 +50,11 @@ const createBrowserConfig = (browser, mode) => {
             from: "src/*.ejs",
             to: ({ absoluteFilename }) => {
               const newFileName = path.basename(absoluteFilename, ".ejs");
-              return path.join("dist", browser, newFileName);
+              return path.join(newFileName);
             },
-            transform: async (content) => {
+            transform: (content) => {
               const data = {
-                version: "1.2.0", // Project version
+                version: packageJson.version, // Use version from package.json
                 browser: browser, // Target browser
               };
 
@@ -68,9 +70,13 @@ const createBrowserConfig = (browser, mode) => {
         {
           test: /\.(ts|tsx)$/i,
           loader: "ts-loader",
-          exclude: ["/node_modules/"],
+          exclude: [/\/node_modules\//],
         },
-        // Add other loaders as needed
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+          exclude: [/\/node_modules\//],
+        },
       ],
     },
     optimization: {

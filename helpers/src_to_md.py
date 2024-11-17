@@ -26,7 +26,7 @@ def generate_markdown(directory, output_file, exclude_dirs=None, exclude_files=N
                     continue  # Skip excluded files
                 
                 # Add or remove file extensions as needed
-                if file.endswith(('.ts', '.js', '.jsx', '.tsx', '.html', '.css', '.json')):
+                if file.endswith(('.ts', '.js', '.jsx', '.tsx', '.html', '.css', '.json', '.ejs', '.md')):
                     file_path = os.path.join(root, file)
                     relative_path = os.path.relpath(file_path, directory)
                     md_file.write(f"## `{relative_path}`\n\n")
@@ -42,6 +42,10 @@ def generate_markdown(directory, output_file, exclude_dirs=None, exclude_files=N
                         language = 'css'
                     elif file.endswith('.json'):
                         language = 'json'
+                    elif file.endswith('.md'):
+                        language = 'markdown'
+                    elif file.endswith('.ejs'):
+                        language = 'ejs'
                     else:
                         language = ''  # No specific language
 

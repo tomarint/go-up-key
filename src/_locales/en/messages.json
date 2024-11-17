@@ -1,10 +1,44 @@
 {
-  "extensionName": {
+  "strExtensionName": {
     "message": "Go Up Key",
     "description": "Extension name"
   },
-  "extensionDescription": {
+  "strExtensionDescription": {
     "message": "This browser extension jumps to the parent directory of the current URL by the keyboard shortcut.",
     "description": "Extension description"
+  },
+  "strOptionsHeader": {
+    "message": "Go Up Key Options",
+    "description": "The title of the options page"
+  },
+  "strOptionCtrlUp": {
+    "message": "Ctrl + ↑"
+  },
+  "strOptionCtrlUpMac": {
+    "message": "Command(⌘) + ↑"
+  },
+  "strOptionCtrlUpDisabled": {
+    "message": "Not used"
+  },
+  "strOptionCtrlUpLevel1": {
+    "message": "1 level up"
+  },
+  "strOptionCtrlUpLevel2": {
+    "message": "2 levels up"
+  },
+  "strOptionAltUp": {
+    "message": "Alt + ↑"
+  },
+  "strOptionAltUpMac": {
+    "message": "Option(⌥) + ↑"
+  },
+  "strOptionAltUpDisabled": {
+    "message": "Not used"
+  },
+  "strOptionAltUpLevel1": {
+    "message": "1 level up"
+  },
+  "strOptionAltUpLevel2": {
+    "message": "2 levels up"
   }
-}
+}    

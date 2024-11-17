@@ -1,10 +1,44 @@
 {
-  "extensionName": {
+  "strExtensionName": {
     "message": "Go Up Key",
     "description": "Extension name"
   },
-  "extensionDescription": {
+  "strExtensionDescription": {
     "message": "キーボードショートカットで現在のURLの上のディレクトリへ移動するブラウザ拡張機能です。",
     "description": "Extension description"
+  },
+  "strOptionsHeader": {
+    "message": "Go Up Key オプション",
+    "description": "The title of the options page"
+  },
+  "strOptionCtrlUp": {
+    "message": "Ctrl + ↑"
+  },
+  "strOptionCtrlUpMac": {
+    "message": "Command(⌘) + ↑"
+  },
+  "strOptionCtrlUpDisabled": {
+    "message": "使用しない"
+  },
+  "strOptionCtrlUpLevel1": {
+    "message": "1つ上へ"
+  },
+  "strOptionCtrlUpLevel2": {
+    "message": "2つ上へ"
+  },
+  "strOptionAltUp": {
+    "message": "Alt + ↑"
+  },
+  "strOptionAltUpMac": {
+    "message": "Option(⌥) + ↑"
+  },
+  "strOptionAltUpDisabled": {
+    "message": "使用しない"
+  },
+  "strOptionAltUpLevel1": {
+    "message": "1つ上へ"
+  },
+  "strOptionAltUpLevel2": {
+    "message": "2つ上へ"
   }
 }

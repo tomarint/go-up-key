@@ -5,7 +5,7 @@
   "manifest_version": 3,
 <% } -%>
 
-  "name": "__MSG_extensionName__",
+  "name": "__MSG_strExtensionName__",
   "version": "<%= version %>",
 
 <% if (browser !== 'firefox') { -%>
@@ -17,12 +17,12 @@
       "48": "images/icon48.png",
       "128": "images/icon128.png"
     },
-    "default_title": "__MSG_extensionName__"
+    "default_title": "__MSG_strExtensionName__"
   },
 <% } -%>
 
   "default_locale": "en",
-  "description": "__MSG_extensionDescription__",
+  "description": "__MSG_strExtensionDescription__",
   "icons": {
     "16": "images/icon16.png",
     "24": "images/icon24.png",
@@ -51,25 +51,41 @@
   },
 <% } -%>
 
+<% if (browser === 'firefox') { -%>
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": false
+  },
+<% } else { -%>
+  "options_page": "options/options.html",
+<% } -%>
+
 <% if (browser !== 'firefox') { -%>
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "host_permissions": [
   ],
 <% } else { -%>
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage"
   ],
 <% } -%>
 
   "commands": {
-    "go-up-key": {
+    "go-up-key-ctrl-up": {
       "suggested_key": {
-        "default": "Alt+Up",
-        "mac": "Command+Up"
+        "default": "Ctrl+Up"
       },
-      "description": "Go up one level"
+      "description": "Go up key command by Ctrl+Up (Windows, Linux), Command+Up (Mac)"
+    },
+    "go-up-key-alt-up": {
+      "suggested_key": {
+        "default": "Alt+Up"
+      },
+      "description": "Go up key command by Alt+Up (Windows, Linux), Option+Up (Mac)"
     }
   }
 }

@@ -25,11 +25,14 @@ export async function createUrlList(url: string): Promise<string[]> {
   return urlList;
 }
 
-export async function parentUrl(url: string): Promise<string> {
+export async function parentUrl(url: string, levels: number): Promise<string> {
   const urlList = await createUrlList(url);
   const len = urlList.length;
-  if (len <= 1) {
+  if (len == 0) {
     return url;
   }
-  return urlList[1];
+  if (levels >= len) {
+    return urlList[len - 1];
+  }
+  return urlList[levels];
 }

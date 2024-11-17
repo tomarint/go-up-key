@@ -1,5 +1,3 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const path = require("path");
 const ejs = require("ejs");
 const TerserPlugin = require("terser-webpack-plugin");
@@ -7,44 +5,55 @@ const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const JsonMinimizerPlugin = require("json-minimizer-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack"); // Import DefinePlugin
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin"); // Type checking plugin
 
-const isProduction = process.env.NODE_ENV == "production";
+const browsers = ['chrome', 'firefox', 'edge']; // List of supported browsers
 
-const browsers = ['chrome', 'firefox', 'edge'];
+/**
+ * Creates a Webpack configuration for a specific browser and mode.
+ * @param {string} browser - The browser name ('chrome', 'firefox', 'edge', etc.)
+ * @param {string} mode - The build mode ('production' or 'development')
+ * @returns {object} - The Webpack configuration object
+ */
+const createBrowserConfig = (browser, mode) => {
+  const isProduction = mode === "production";
 
-const createBrowserConfig = (browser) => {
   return {
     mode: isProduction ? "production" : "development",
     entry: {
       background: path.resolve(__dirname, "src/background/background.ts"),
-      // popup: path.resolve(__dirname, "src/popup/popup.ts"),
-      // options: path.resolve(__dirname, "src/options/options.ts"),
+      // Add other entry points as needed
+      options: path.resolve(__dirname, "src/options/options.ts"),
     },
     output: {
       path: path.resolve(__dirname, 'dist', browser),
       filename: "[name]/[name].js",
     },
-    devtool: false, // not to use eval in debug build
+    devtool: isProduction ? false : "source-map", // Enable source maps only in development
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development'),
+      }),
+      new ForkTsCheckerWebpackPlugin(), // Add type checking plugin
       new CopyPlugin({
         patterns: [
           {
             from: "src",
             globOptions: {
-              ignore: ["**/*.ts", "**/*.ejs"],
+              ignore: ["**/*.ts", "**/*.ejs"], // Exclude TypeScript and EJS files
             },
           },
           {
             from: "src/*.ejs",
-            to: ({ context, absoluteFilename }) => {
-              // Remove '.ejs' extension from output file
+            to: ({ absoluteFilename }) => {
               const newFileName = path.basename(absoluteFilename, ".ejs");
-              return path.join(context, "dist", browser, newFileName);
+              return path.join("dist", browser, newFileName);
             },
             transform: async (content) => {
               const data = {
-                version: "1.2.0",
-                browser: browser,
+                version: "1.2.0", // Project version
+                browser: browser, // Target browser
               };
 
               // Render the EJS template
@@ -61,31 +70,37 @@ const createBrowserConfig = (browser) => {
           loader: "ts-loader",
           exclude: ["/node_modules/"],
         },
+        // Add other loaders as needed
       ],
     },
     optimization: {
       minimize: isProduction,
       minimizer: [
-        new TerserPlugin(),
+        new TerserPlugin(), // Minify JavaScript
         new HtmlMinimizerPlugin({
           minimizerOptions: {
             collapseWhitespace: true,
             removeComments: true,
             conservativeCollapse: false,
-            removeComments: true,
-            // removeRedundantAttributes: true,
-            // removeEmptyAttributes: true,
-            // removeOptionalTags: true
           },
         }),
-        new CssMinimizerPlugin(),
-        new JsonMinimizerPlugin(),
+        new CssMinimizerPlugin(), // Minify CSS
+        new JsonMinimizerPlugin(), // Minify JSON
       ],
     },
     resolve: {
-      extensions: [".tsx", ".ts", ".js"],
+      extensions: [".tsx", ".ts", ".js"], // Resolve these extensions
     },
   };
 };
 
-module.exports = browsers.map(createBrowserConfig);
+/**
+ * Webpack export function.
+ * @param {object} env - Environment variables
+ * @param {object} argv - Command line arguments
+ * @returns {Array<object>} - Array of Webpack configuration objects for each browser
+ */
+module.exports = (env, argv) => {
+  const mode = argv.mode || 'development'; // Default to development mode if not specified
+  return browsers.map(browser => createBrowserConfig(browser, mode));
+};

@@ -5,7 +5,7 @@ import prefix from 'loglevel-plugin-prefix';
 try {
   prefix.reg(log);
   prefix.apply(log, {
-    template: "%t %l %n",
+    template: "%t %l %n",  // timestamp, log level, and name of the logger
     timestampFormatter: (date) => date.toLocaleTimeString(),
   });
 } catch (error) {

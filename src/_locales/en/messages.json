@@ -7,38 +7,67 @@
     "message": "This browser extension jumps to the parent directory of the current URL by the keyboard shortcut.",
     "description": "Extension description"
   },
-  "strOptionsHeader": {
+
+  "strOptionsWinHeader": {
     "message": "Go Up Key Options",
     "description": "The title of the options page"
   },
-  "strOptionCtrlUp": {
+
+  "strOptionWinCtrlUp": {
     "message": "Ctrl + ↑"
   },
-  "strOptionCtrlUpMac": {
-    "message": "Command(⌘) + ↑"
-  },
-  "strOptionCtrlUpDisabled": {
+  "strOptionWinCtrlUpDisabled": {
     "message": "Not used"
   },
-  "strOptionCtrlUpLevel1": {
+  "strOptionWinCtrlUpLevel1": {
     "message": "1 level up"
   },
-  "strOptionCtrlUpLevel2": {
+  "strOptionWinCtrlUpLevel2": {
     "message": "2 levels up"
   },
-  "strOptionAltUp": {
+
+  "strOptionWinAltUp": {
     "message": "Alt + ↑"
   },
-  "strOptionAltUpMac": {
-    "message": "Option(⌥) + ↑"
-  },
-  "strOptionAltUpDisabled": {
+  "strOptionWinAltUpDisabled": {
     "message": "Not used"
   },
-  "strOptionAltUpLevel1": {
+  "strOptionWinAltUpLevel1": {
     "message": "1 level up"
   },
-  "strOptionAltUpLevel2": {
+  "strOptionWinAltUpLevel2": {
+    "message": "2 levels up"
+  },
+
+  "strOptionsMacHeader": {
+    "message": "Go Up Key Options",
+    "description": "The title of the options page"
+  },
+
+  "strOptionMacCommandUp": {
+    "message": "Command(⌘) + ↑"
+  },
+  "strOptionMacCommandUpDisabled": {
+    "message": "Not used"
+  },
+  "strOptionMacCommandUpLevel1": {
+    "message": "1 level up"
+  },
+  "strOptionMacCommandUpLevel2": {
+    "message": "2 levels up"
+  },
+
+  "strOptionMacOptionUp": {
+    "message": "Option(⌥) + ↑"
+  },
+  "strOptionMacOptionUpDisabled": {
+    "message": "Not used"
+  },
+  "strOptionMacOptionUpLevel1": {
+    "message": "1 level up"
+  },
+  "strOptionMacOptionUpLevel2": {
     "message": "2 levels up"
   }
-}    
+
+}

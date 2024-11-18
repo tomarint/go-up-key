@@ -1,5 +1,6 @@
 import log from '../utils/logger';
 import { setOption, getOptions, Options } from '../utils/settings';
+import { checkIfMac } from '../utils/platform';
 
 /**
  * Define interfaces for settings
@@ -19,7 +20,6 @@ interface EventSetting {
 interface LocalizeElement {
   id: string;
   messageKey: string;
-  messageKeyMac?: string;
 }
 
 /**
@@ -30,8 +30,10 @@ async function restoreOptions(): Promise<void> {
     const options = await getOptions();
     
     const defaultSettings: DefaultSetting[] = [
-      { key: 'OptionCtrlUp', defaultValue: '1', selector: '#OptionCtrlUp' },
-      { key: 'OptionAltUp', defaultValue: '1', selector: '#OptionAltUp' },
+      { key: 'OptionWinCtrlUp', defaultValue: '1', selector: '#OptionWinCtrlUp' },
+      { key: 'OptionWinAltUp', defaultValue: '1', selector: '#OptionWinAltUp' },
+      { key: 'OptionMacCommandUp', defaultValue: '1', selector: '#OptionMacCommandUp' },
+      { key: 'OptionMacOptionUp', defaultValue: '1', selector: '#OptionMacOptionUp' },
       // Add other settings here
     ];
 
@@ -54,8 +56,10 @@ async function restoreOptions(): Promise<void> {
  */
 function registerEventHandlers(): void {
   const settings: EventSetting[] = [
-    { selector: '#OptionCtrlUp', key: 'OptionCtrlUp', event: 'change' },
-    { selector: '#OptionAltUp', key: 'OptionAltUp', event: 'change' },
+    { selector: '#OptionWinCtrlUp', key: 'OptionWinCtrlUp', event: 'change' },
+    { selector: '#OptionWinAltUp', key: 'OptionWinAltUp', event: 'change' },
+    { selector: '#OptionMacCommandUp', key: 'OptionMacCommandUp', event: 'change' },
+    { selector: '#OptionMacOptionUp', key: 'OptionMacOptionUp', event: 'change' },
     // Add other settings here
   ];
 
@@ -77,18 +81,31 @@ function registerEventHandlers(): void {
  */
 async function localizePage(): Promise<void> {
   try {
-    const isMac = await checkIfMac(); // Assume this function is defined below
-    
     const elements: LocalizeElement[] = [
-      { id: 'strOptionsHeader', messageKey: 'strOptionsHeader' },
-      { id: 'strOptionCtrlUp', messageKey: 'strOptionCtrlUp', messageKeyMac: 'strOptionCtrlUpMac' },
-      { id: 'strOptionCtrlUpDisabled', messageKey: 'strOptionCtrlUpDisabled' },
-      { id: 'strOptionCtrlUpLevel1', messageKey: 'strOptionCtrlUpLevel1' },
-      { id: 'strOptionCtrlUpLevel2', messageKey: 'strOptionCtrlUpLevel2' },
-      { id: 'strOptionAltUp', messageKey: 'strOptionAltUp', messageKeyMac: 'strOptionAltUpMac' },
-      { id: 'strOptionAltUpDisabled', messageKey: 'strOptionAltUpDisabled' },
-      { id: 'strOptionAltUpLevel1', messageKey: 'strOptionAltUpLevel1' },
-      { id: 'strOptionAltUpLevel2', messageKey: 'strOptionAltUpLevel2' },
+      { id: 'strOptionsWinHeader', messageKey: 'strOptionsWinHeader' },
+
+      { id: 'strOptionWinCtrlUp', messageKey: 'strOptionWinCtrlUp' },
+      { id: 'strOptionWinCtrlUpDisabled', messageKey: 'strOptionWinCtrlUpDisabled' },
+      { id: 'strOptionWinCtrlUpLevel1', messageKey: 'strOptionWinCtrlUpLevel1' },
+      { id: 'strOptionWinCtrlUpLevel2', messageKey: 'strOptionWinCtrlUpLevel2' },
+
+      { id: 'strOptionWinAltUp', messageKey: 'strOptionWinAltUp' },
+      { id: 'strOptionWinAltUpDisabled', messageKey: 'strOptionWinAltUpDisabled' },
+      { id: 'strOptionWinAltUpLevel1', messageKey: 'strOptionWinAltUpLevel1' },
+      { id: 'strOptionWinAltUpLevel2', messageKey: 'strOptionWinAltUpLevel2' },
+
+      { id: 'strOptionsMacHeader', messageKey: 'strOptionsMacHeader' },
+
+      { id: 'strOptionMacCommandUp', messageKey: 'strOptionMacCommandUp' },
+      { id: 'strOptionMacCommandUpDisabled', messageKey: 'strOptionMacCommandUpDisabled' },
+      { id: 'strOptionMacCommandUpLevel1', messageKey: 'strOptionMacCommandUpLevel1' },
+      { id: 'strOptionMacCommandUpLevel2', messageKey: 'strOptionMacCommandUpLevel2' },
+
+      { id: 'strOptionMacOptionUp', messageKey: 'strOptionMacOptionUp' },
+      { id: 'strOptionMacOptionUpDisabled', messageKey: 'strOptionMacOptionUpDisabled' },
+      { id: 'strOptionMacOptionUpLevel1', messageKey: 'strOptionMacOptionUpLevel1' },
+      { id: 'strOptionMacOptionUpLevel2', messageKey: 'strOptionMacOptionUpLevel2' },
+    
       // Add other localization elements here
     ];
 
@@ -98,11 +115,8 @@ async function localizePage(): Promise<void> {
         log.warn(`Element with id ${element.id} not found`);
       } else {
         let messageKey = element.messageKey;
-        if (isMac && element.messageKeyMac) {
-          messageKey = element.messageKeyMac;
-        }
         el.textContent = chrome.i18n.getMessage(messageKey);
-        el.classList.remove('invisible-text');
+        // el.classList.remove('invisible-text');
         log.debug(`Localized element ${element.id} with messageKey ${messageKey}`);
       }
     });
@@ -112,22 +126,25 @@ async function localizePage(): Promise<void> {
 }
 
 /**
- * Checks if the current platform is Mac.
- * @returns A promise that resolves to true if Mac, otherwise false.
+ * Shows platform-specific options and hides others.
  */
-async function checkIfMac(): Promise<boolean> {
-  return new Promise((resolve) => {
-    chrome.runtime.getPlatformInfo((info) => {
-      if (chrome.runtime.lastError) {
-        log.error("Error getting platform info:", chrome.runtime.lastError.message);
-        resolve(false);
-      } else {
-        const isMac = info.os === 'mac';
-        log.info(`Platform is Mac: ${isMac}`);
-        resolve(isMac);
-      }
-    });
-  });
+async function showPlatformSpecificOptions(): Promise<void> {
+  const isMac = await checkIfMac();
+  const windowsOptions = document.getElementById('windows-options');
+  const macOptions = document.getElementById('mac-options');
+
+  if (isMac) {
+    if (windowsOptions) windowsOptions.style.display = 'none';
+  } else {
+    if (macOptions) macOptions.style.display = 'none';
+  }
+}
+
+/**
+ * Displays the body after initialization to prevent flicker.
+ */
+function showBody(): void {
+  document.body.style.display = 'block';
 }
 
 /**
@@ -137,6 +154,8 @@ async function onDomContentLoaded(): Promise<void> {
   await restoreOptions();
   registerEventHandlers();
   await localizePage();
+  await showPlatformSpecificOptions();
+  showBody();
 }
 
 // Register the DOMContentLoaded event listener

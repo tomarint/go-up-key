@@ -2,8 +2,10 @@ import log from './logger';
 
 // Define the structure of the options
 export interface Options {
-  OptionCtrlUp: string;
-  OptionAltUp: string;
+  OptionWinCtrlUp: string;
+  OptionWinAltUp: string;
+  OptionMacCommandUp: string;
+  OptionMacOptionUp: string;
   // Add other options as needed
 }
 
@@ -46,8 +48,10 @@ export function setOptions(optionsData: Partial<Options>): void {
  */
 export function getOption(key: keyof Options): Promise<string> {
   const defaultOptions: Partial<Options> = {
-    OptionCtrlUp: '1',
-    OptionAltUp: '1',
+    OptionWinCtrlUp: '1',
+    OptionWinAltUp: '1',
+    OptionMacCommandUp: '1',
+    OptionMacOptionUp: '1',
     // Initialize other options with default values
   };
 
@@ -76,8 +80,10 @@ export function getOption(key: keyof Options): Promise<string> {
  */
 export function getOptions(): Promise<Options> {
   const defaultOptions: Options = {
-    OptionCtrlUp: '1',
-    OptionAltUp: '1',
+    OptionWinCtrlUp: '1',
+    OptionWinAltUp: '1',
+    OptionMacCommandUp: '1',
+    OptionMacOptionUp: '1',
     // Initialize other options with default values
   };
   

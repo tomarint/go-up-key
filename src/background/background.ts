@@ -2,6 +2,7 @@ import log from '../utils/logger';
 import { getOption, Options } from '../utils/settings';
 import { getActiveTab, updateTab } from '../utils/tabs';
 import { getParentUrl } from '../utils/urls';
+import { checkIfMac } from '../utils/platform';
 
 /**
  * Initializes the background script.
@@ -52,11 +53,20 @@ async function goUp(levels: number): Promise<void> {
  */
 async function handleCommand(command: string): Promise<void> {
   try {
+    const isMac = await checkIfMac();
     let optionKey: keyof Options;
     if (command === "go-up-key-ctrl-up") {
-      optionKey = 'OptionCtrlUp';
+      if (isMac) {
+        optionKey = 'OptionMacCommandUp';
+      } else {
+        optionKey = 'OptionWinCtrlUp';
+      }
     } else if (command === "go-up-key-alt-up") {
-      optionKey = 'OptionAltUp';
+      if (isMac) {
+        optionKey = 'OptionMacOptionUp';
+      } else {
+        optionKey = 'OptionWinAltUp';
+      }
     } else {
       log.warn(`Unhandled command: ${command}`);
       return;

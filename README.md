@@ -4,9 +4,7 @@
 
 This extension provides a streamlined and efficient way to move up in a website's hierarchy without relying on the site's navigation links.
 
-![Screenshot](./screenshots/windows-options.png)
-
-![Screenshot](./screenshots/mac-options.png)
+![Screenshot](./screenshots/1280x800.png)
 
 ## How to Install
 
@@ -18,16 +16,23 @@ You can install the extension from your browser’s extension store:
 
 ## Keyboard Shortcuts
 
-| Action               | Windows / Linux           | Mac                       |
-|----------------------|---------------------------|---------------------------|
-| **Go Up (Configurable)** | Ctrl + Up Arrow or Alt + Up Arrow | Command(⌘) + Up Arrow or Option(⌥) + Up Arrow |
+### Windows
+
+| Action                   | Shortcut             |
+|--------------------------|----------------------|
+| **Go Up (Configurable)** | Ctrl + Up Arrow      |
+| **Go Up (Configurable)** | Alt + Up Arrow       |
+
+### Mac
+
+| Action                   | Shortcut                   |
+|--------------------------|----------------------------|
+| **Go Up (Configurable)** | Command(⌘) + Up Arrow      |
+| **Go Up (Configurable)** | Option(⌥) + Up Arrow       |
 
 ## Usage
 
-While viewing any page, you can navigate to the parent directory of the current URL by pressing one of the keyboard shortcuts:
-
-- **Ctrl + Up Arrow** (Windows/Linux) or **Command(⌘) + Up Arrow** (Mac)
-- **Alt + Up Arrow** (Windows/Linux) or **Option(⌥) + Up Arrow** (Mac)
+While viewing any page, you can navigate to the parent directory of the current URL by pressing one of the keyboard shortcuts appropriate for your platform.
 
 By default, these shortcuts will move you up one level in the URL path. You can configure the number of levels to move up or disable specific shortcuts in the extension's options page.
 

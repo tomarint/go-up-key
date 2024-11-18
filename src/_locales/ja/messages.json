@@ -7,38 +7,67 @@
     "message": "キーボードショートカットで現在のURLの上のディレクトリへ移動するブラウザ拡張機能です。",
     "description": "Extension description"
   },
-  "strOptionsHeader": {
+
+  "strOptionsWinHeader": {
     "message": "Go Up Key オプション",
     "description": "The title of the options page"
   },
-  "strOptionCtrlUp": {
+
+  "strOptionWinCtrlUp": {
     "message": "Ctrl + ↑"
   },
-  "strOptionCtrlUpMac": {
-    "message": "Command(⌘) + ↑"
-  },
-  "strOptionCtrlUpDisabled": {
+  "strOptionWinCtrlUpDisabled": {
     "message": "使用しない"
   },
-  "strOptionCtrlUpLevel1": {
+  "strOptionWinCtrlUpLevel1": {
     "message": "1つ上へ"
   },
-  "strOptionCtrlUpLevel2": {
+  "strOptionWinCtrlUpLevel2": {
     "message": "2つ上へ"
   },
-  "strOptionAltUp": {
+
+  "strOptionWinAltUp": {
     "message": "Alt + ↑"
   },
-  "strOptionAltUpMac": {
-    "message": "Option(⌥) + ↑"
-  },
-  "strOptionAltUpDisabled": {
+  "strOptionWinAltUpDisabled": {
     "message": "使用しない"
   },
-  "strOptionAltUpLevel1": {
+  "strOptionWinAltUpLevel1": {
     "message": "1つ上へ"
   },
-  "strOptionAltUpLevel2": {
+  "strOptionWinAltUpLevel2": {
+    "message": "2つ上へ"
+  },
+
+  "strOptionsMacHeader": {
+    "message": "Go Up Key オプション",
+    "description": "The title of the options page"
+  },
+
+  "strOptionMacCommandUp": {
+    "message": "Command(⌘) + ↑"
+  },
+  "strOptionMacCommandUpDisabled": {
+    "message": "使用しない"
+  },
+  "strOptionMacCommandUpLevel1": {
+    "message": "1つ上へ"
+  },
+  "strOptionMacCommandUpLevel2": {
+    "message": "2つ上へ"
+  },
+
+  "strOptionMacOptionUp": {
+    "message": "Option(⌥) + ↑"
+  },
+  "strOptionMacOptionUpDisabled": {
+    "message": "使用しない"
+  },
+  "strOptionMacOptionUpLevel1": {
+    "message": "1つ上へ"
+  },
+  "strOptionMacOptionUpLevel2": {
     "message": "2つ上へ"
   }
+
 }

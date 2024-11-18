@@ -10,54 +10,104 @@
 
   <body class="py-4">
     <main>
-      <div class="container-fluid bg-body">
-        <div class="card rounded-3 shadow">
-          <div class="card-header py-3 fs-4">
-            <span id="strOptionsHeader" class="invisible-text">Go Up Key Options</span>
-          </div>
-          <div class="card-body">
 
-            <div class="row mt-3">
-              <div class="col-sm-7 my-1 d-flex align-items-center">
-                <label for="OptionCtrlUp" id="strOptionCtrlUp" class="invisible-text"
-                  >Ctrl + ↑</label
-                >
-              </div>
-              <div class="col-sm-5">
-                <select
-                  id="OptionCtrlUp"
-                  name="OptionCtrlUp"
-                  class="form-select"
-                >
-                  <option value="0" id="strOptionCtrlUpDisabled" class="invisible-text">Not used</option>
-                  <option value="1" id="strOptionCtrlUpLevel1" class="invisible-text">1 level up</option>
-                  <option value="2" id="strOptionCtrlUpLevel2" class="invisible-text">2 levels up</option>
-                </select>
-              </div>
+      <div id="windows-options">
+        <div class="container-fluid bg-body">
+          <div class="card rounded-3 shadow">
+            <div class="card-header py-3 fs-4">
+              <span id="strOptionsWinHeader">Go Up Key Options</span>
             </div>
+            <div class="card-body">
 
-            <div class="row mt-3">
-              <div class="col-sm-7 my-1 d-flex align-items-center">
-                <label for="OptionAltUp" id="strOptionAltUp" class="invisible-text"
-                  > </label
-                >
+              <div class="row mt-3">
+                <div class="col-sm-7 my-1 d-flex align-items-center">
+                  <label for="OptionWinCtrlUp" id="strOptionWinCtrlUp"
+                    >Ctrl + ↑</label
+                  >
+                </div>
+                <div class="col-sm-5">
+                  <select
+                    id="OptionWinCtrlUp"
+                    name="OptionWinCtrlUp"
+                    class="form-select"
+                  >
+                    <option value="0" id="strOptionWinCtrlUpDisabled">Not used</option>
+                    <option value="1" id="strOptionWinCtrlUpLevel1">1 level up</option>
+                    <option value="2" id="strOptionWinCtrlUpLevel2">2 levels up</option>
+                  </select>
+                </div>
               </div>
-              <div class="col-sm-5">
-                <select
-                  id="OptionAltUp"
-                  name="OptionAltUp"
-                  class="form-select"
-                >
-                  <option value="0" id="strOptionAltUpDisabled" class="invisible-text">Not used</option>
-                  <option value="1" id="strOptionAltUpLevel1" class="invisible-text">1 level up</option>
-                  <option value="2" id="strOptionAltUpLevel2" class="invisible-text">2 levels up</option>
-                </select>
+
+              <div class="row mt-3">
+                <div class="col-sm-7 my-1 d-flex align-items-center">
+                  <label for="OptionWinAltUp" id="strOptionWinAltUp">Alt + ↑</label
+                  >
+                </div>
+                <div class="col-sm-5">
+                  <select
+                    id="OptionWinAltUp"
+                    name="OptionWinAltUp"
+                    class="form-select"
+                  >
+                    <option value="0" id="strOptionWinAltUpDisabled">Not used</option>
+                    <option value="1" id="strOptionWinAltUpLevel1">1 level up</option>
+                    <option value="2" id="strOptionWinAltUpLevel2">2 levels up</option>
+                  </select>
+                </div>
               </div>
+
             </div>
-
           </div>
         </div>
       </div>
+
+      <div id="mac-options">
+        <div class="container-fluid bg-body">
+          <div class="card rounded-3 shadow">
+            <div class="card-header py-3 fs-4">
+              <span id="strOptionsMacHeader">Go Up Key Options</span>
+            </div>
+            <div class="card-body">
+
+              <div class="row mt-3">
+                <div class="col-sm-7 my-1 d-flex align-items-center">
+                  <label for="OptionMacCommandUp" id="strOptionMacCommandUp">Command(⌘) + ↑</label>
+                </div>
+                <div class="col-sm-5">
+                  <select
+                    id="OptionMacCommandUp"
+                    name="OptionMacCommandUp"
+                    class="form-select"
+                  >
+                    <option value="0" id="strOptionMacCommandUpDisabled">Not used</option>
+                    <option value="1" id="strOptionMacCommandUpLevel1">1 level up</option>
+                    <option value="2" id="strOptionMacCommandUpLevel2">2 levels up</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-sm-7 my-1 d-flex align-items-center">
+                  <label for="OptionMacOptionUp" id="strOptionMacOptionUp">Option(⌥) + ↑</label>
+                </div>
+                <div class="col-sm-5">
+                  <select
+                    id="OptionMacOptionUp"
+                    name="OptionMacOptionUp"
+                    class="form-select"
+                  >
+                    <option value="0" id="strOptionMacOptionUpDisabled">Not used</option>
+                    <option value="1" id="strOptionMacOptionUpLevel1">1 level up</option>
+                    <option value="2" id="strOptionMacOptionUpLevel2">2 levels up</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
     <script src="options.js"></script>
   </body>

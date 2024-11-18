@@ -12,9 +12,12 @@
 
 /* .invisible-text {
   color: transparent;
-}
+} */
 
 div#windows-options {
-  margin-top: 70px;
-  margin-bottom: 30px;
-} */
+  margin-bottom: 100px;
+}
+
+div#mac-options {
+  margin-bottom: 100px;
+}

@@ -52,7 +52,7 @@ This feature is particularly useful when browsing documentation or file director
 
 Feel free to use “Go Up Key” alongside other navigation extensions for an even greater flexibility in browsing.
 
-## Related browser extensions
+## Related Extensions
 
 - [Go Up](https://github.com/tomarint/go-up)
 

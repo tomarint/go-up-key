@@ -16,7 +16,6 @@ export function generateParentUrls(url: string): string[] {
       log.debug("URL object:", urlObj);
     }
 
-
     // Remove search
     if (urlObj.search !== '') {
       urlObj.search = '';

@@ -10,8 +10,8 @@ This extension provides a streamlined and efficient way to move up in a website'
 
 You can install the extension from your browser’s extension store:
 
-- Chrome / Brave: *Coming Soon*
-- Firefox: *Coming Soon*
+- [Chrome / Brave](https://chromewebstore.google.com/detail/go-up-key/fdhnikbmoepilpndfpakljadlinfnnkj)
+- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/go-up-key/)
 - Edge: *Coming Soon*
 
 ## Keyboard Shortcuts

@@ -10,8 +10,8 @@
 
 ブラウザの拡張機能ストアからインストールできます：
 
-- Chrome / Brave: *Coming Soon*
-- Firefox: *Coming Soon*
+- [Chrome / Brave](https://chromewebstore.google.com/detail/go-up-key/fdhnikbmoepilpndfpakljadlinfnnkj)
+- [Firefox](https://addons.mozilla.org/ja/firefox/addon/go-up-key/)
 - Edge: *Coming Soon*
 
 ## キーボードショートカット

@@ -12,7 +12,7 @@ You can install the extension from your browser’s extension store:
 
 - [Chrome / Brave](https://chromewebstore.google.com/detail/go-up-key/fdhnikbmoepilpndfpakljadlinfnnkj)
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/go-up-key/)
-- Edge: *Coming Soon*
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/go-up-key/kfkeepcbmfonnhdajjoineblcaddamkd)
 
 ## Keyboard Shortcuts
 

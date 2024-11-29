@@ -12,8 +12,7 @@
 
 - [Chrome / Brave](https://chromewebstore.google.com/detail/go-up-key/fdhnikbmoepilpndfpakljadlinfnnkj)
 - [Firefox](https://addons.mozilla.org/ja/firefox/addon/go-up-key/)
-- Edge: *Coming Soon*
-
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/go-up-key/kfkeepcbmfonnhdajjoineblcaddamkd)
 ## キーボードショートカット
 
 ### Windows

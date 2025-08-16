@@ -1,6 +1,6 @@
 {
   "name": "go-up-key",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Browser extension that jumps to the parent directory of the current URL by the keyboard shortcut",
   "repository": "git@github.com:tomarint/go-up-key.git",
   "author": "tomarin <tomarint@gmail.com>",

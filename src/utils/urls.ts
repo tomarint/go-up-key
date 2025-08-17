@@ -5,9 +5,10 @@ export function generateParentUrls(url: string): string[] {
     const urlObj = new URL(url);
     let pathname = urlObj.pathname;
     const urlList = [urlObj.toString()];
+    let endsWithSlash = false;
 
     log.debug("Generating parent URLs for:", url);
-    log.debug("URL object:", urlObj);
+    log.debug("URL pathname:", pathname);
 
     // Remove hash
     if (urlObj.hash !== '') {
@@ -25,6 +26,7 @@ export function generateParentUrls(url: string): string[] {
 
     // Remove trailing slash
     if (pathname.endsWith("/") && !pathname.endsWith("//")) {
+      endsWithSlash = true;
       pathname = pathname.slice(0, -1);
       urlObj.pathname = pathname;
       log.debug("URL object:", urlObj);
@@ -34,8 +36,13 @@ export function generateParentUrls(url: string): string[] {
     while (pathname.lastIndexOf("/") >= 0) {
       pathname = pathname.substring(0, pathname.lastIndexOf("/"));
       urlObj.pathname = pathname;
-      urlList.push(urlObj.toString());
-      log.debug("URL object:", urlObj);
+      let urlStringToAdd = urlObj.toString();
+      if (endsWithSlash && !urlStringToAdd.endsWith("/")) {
+        urlStringToAdd += "/";
+      }
+      urlList.push(urlStringToAdd);
+      log.debug("URL pathname updated:", urlObj.pathname);
+      log.debug("URL added to list:", urlStringToAdd);
     }
 
     log.debug("Parent URLs:", urlList);

@@ -60,19 +60,10 @@
   "options_page": "options/options.html",
 <% } -%>
 
-<% if (browser !== 'firefox') { -%>
-  "permissions": [
-    "tabs",
-    "storage"
-  ],
-  "host_permissions": [
-  ],
-<% } else { -%>
   "permissions": [
     "activeTab",
     "storage"
   ],
-<% } -%>
 
   "commands": {
     "go-up-key-ctrl-up": {

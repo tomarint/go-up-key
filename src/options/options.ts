@@ -160,3 +160,5 @@ async function onDomContentLoaded(): Promise<void> {
 
 // Register the DOMContentLoaded event listener
 document.addEventListener("DOMContentLoaded", onDomContentLoaded);
+
+export {};
